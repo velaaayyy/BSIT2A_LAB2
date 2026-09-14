@@ -1,0 +1,106 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Nova — Sign In</title> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Inter", Arial, sans-serif; } :root { --primary: #8b5cf6; --secondary: #06b6d4; --text: #f8fafc; --muted: #8b91a1; --border: rgba(255, 255, 255, 0.09); --card: rgba(17, 19, 28, 0.78); } body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 30px 18px; overflow-x: hidden; color: var(--text); background: radial-gradient( circle at 15% 20%, rgba(124, 58, 237, 0.25), transparent 30% ), radial-gradient( circle at 85% 80%, rgba(6, 182, 212, 0.18), transparent 30% ), #07080d; } /* Decorative background */ .orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; } .orb-one { width: 260px; height: 260px; top: -80px; left: -70px; background: rgba(139, 92, 246, 0.3); animation: moveOne 8s ease-in-out infinite alternate; } .orb-two { width: 300px; height: 300px; right: -100px; bottom: -100px; background: rgba(6, 182, 212, 0.22); animation: moveTwo 9s ease-in-out infinite alternate; } @keyframes moveOne { to { transform: translate(50px, 40px); } } @keyframes moveTwo { to { transform: translate(-40px, -30px); } } /* Main wrapper */ .page { position: relative; z-index: 2; width: 100%; max-width: 460px; } /* Brand */ .brand { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 25px; } .brand-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 13px; font-size: 18px; font-weight: 800; background: linear-gradient( 135deg, var(--primary), var(--secondary) ); box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); } .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -0.5px; } /* Card */ .card { padding: 42px; border: 1px solid var(--border); border-radius: 26px; background: var(--card); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px rgba(255, 255, 255, 0.06); } .header { text-align: center; margin-bottom: 32px; } .header h1 { font-size: 31px; letter-spacing: -1.5px; margin-bottom: 9px; } .header p { color: var(--muted); font-size: 14px; line-height: 1.6; } /* Form */ .form-group { margin-bottom: 19px; } label { display: block; margin-bottom: 8px; color: #d7dae2; font-size: 13px; font-weight: 500; } .input-box { position: relative; } .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #707686; font-size: 16px; pointer-events: none; } input { width: 100%; height: 52px; padding: 0 16px 0 44px; border: 1px solid var(--border); outline: none; border-radius: 13px; color: white; background: rgba(255, 255, 255, 0.045); font-size: 14px; transition: 0.25s ease; } input::placeholder { color: #626877; } input:hover { border-color: rgba(255, 255, 255, 0.16); } input:focus { border-color: rgba(139, 92, 246, 0.8); background: rgba(139, 92, 246, 0.06); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.09); } /* Password toggle */ .password-toggle { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); border: none; background: transparent; color: #707686; cursor: pointer; font-size: 13px; } .password-toggle:hover { color: white; } #password { padding-right: 65px; } /* Options */ .options { display: flex; align-items: center; justify-content: space-between; margin: 7px 0 23px; } .remember { display: flex; align-items: center; gap: 8px; color: #888e9d; font-size: 12px; cursor: pointer; } .remember input { width: 15px; height: 15px; padding: 0; accent-color: var(--primary); box-shadow: none; } .forgot { color: #a78bfa; text-decoration: none; font-size: 12px; } .forgot:hover { color: #c4b5fd; } /* Sign in button */ .login-btn { width: 100%; height: 52px; border: none; border-radius: 13px; cursor: pointer; color: white; font-size: 14px; font-weight: 600; background: linear-gradient( 135deg, #8b5cf6, #6366f1 ); box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25); transition: 0.25s ease; } .login-btn:hover { transform: translateY(-2px); box-shadow: 0 17px 35px rgba(99, 102, 241, 0.4); } .login-btn:active { transform: translateY(0); } /* Divider */ .divider { display: flex; align-items: center; gap: 12px; margin: 27px 0 20px; color: #5f6573; font-size: 10px; letter-spacing: 0.8px; } .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: rgba(255, 255, 255, 0.08); } /* Social buttons */ .socials { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; } .social { height: 47px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.035); color: #d9dce4; cursor: pointer; font-size: 13px; transition: 0.2s ease; } .social:hover { background: rgba(255, 255, 255, 0.075); border-color: rgba(255, 255, 255, 0.17); transform: translateY(-1px); } /* Sign up */ .signup { text-align: center; margin-top: 26px; color: #707686; font-size: 12px; } .signup a { color: #a78bfa; text-decoration: none; font-weight: 600; } .signup a:hover { color: #c4b5fd; } /* Footer */ .footer { text-align: center; margin-top: 22px; color: #4f5562; font-size: 10px; } /* Loading state */ .loading { pointer-events: none; opacity: 0.7; } /* Responsive */ @media (max-width: 500px) { body { padding: 20px 14px; } .card { padding: 32px 24px; border-radius: 22px; } .header h1 { font-size: 27px; } .socials { grid-template-columns: 1fr; } } @media (max-width: 350px) { .card { padding: 28px 18px; } .options { align-items: flex-start; flex-direction: column; gap: 12px; } } </style> </head> <body> <div class="orb orb-one"></div> <div class="orb orb-two"></div> <main class="page">
+<div class="brand">
+  <div class="brand-icon">N</div>
+  <div class="brand-name">Nova</div>
+</div>
+
+<section class="card">
+
+  <div class="header">
+    <h1>Welcome back</h1>
+    <p>
+      Sign in to your account to continue.
+    </p>
+  </div>
+
+  <form id="loginForm">
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+
+      <div class="input-box">
+        <span class="input-icon">✉</span>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+
+      <div class="input-box">
+        <span class="input-icon">⌑</span>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        />
+
+        <button
+          type="button"
+          class="password-toggle"
+          id="togglePassword"
+        >
+          Show
+        </button>
+      </div>
+    </div>
+
+    <div class="options">
+
+      <label class="remember">
+        <input type="checkbox" />
+        <span>Remember me</span>
+      </label>
+
+      <a href="#" class="forgot">
+        Forgot password?
+      </a>
+
+    </div>
+
+    <button
+      class="login-btn"
+      type="submit"
+      id="loginButton"
+    >
+      Sign in →
+    </button>
+
+  </form>
+
+  <div class="divider">
+    OR CONTINUE WITH
+  </div>
+
+  <div class="socials">
+    <button class="social">
+      ◉ &nbsp; Google
+    </button>
+
+    <button class="social">
+      ◈ &nbsp; GitHub
+    </button>
+  </div>
+
+  <p class="signup">
+    Don't have an account?
+    <a href="#">Create one</a>
+  </p>
+
+</section>
+
+<div class="footer">
+  © 2026 Nova. All rights reserved.
+</div>
+
+</main> <script> const form = document.getElementById("loginForm"); const button = document.getElementById("loginButton"); const password = document.getElementById("password"); const togglePassword = document.getElementById("togglePassword"); // Password visibility togglePassword.addEventListener("click", () => { const isPassword = password.type === "password"; password.type = isPassword ? "text" : "password"; togglePassword.textContent = isPassword ? "Hide" : "Show"; }); // Login animation form.addEventListener("submit", (e) => { e.preventDefault(); button.classList.add("loading"); button.textContent = "Signing in..."; setTimeout(() => { button.classList.remove("loading"); button.textContent = "Welcome back ✓"; }, 1000); }); </script> </body> </html>
